@@ -4,23 +4,6 @@ import {browserDetection} from "./services/metric-collection";
 import {getLocationData} from "./services/api-helper-geoLocation";
 import {sendMetrics} from "./services/api-helper-sendReceiveMetrics";
 
-function BrowserDetection(  ) {
-  let deviceType = "";
-  if (navigator.userAgent.search("MSIE")>0) {
-   deviceType = "IE"
-  }else if (navigator.userAgent.search("Chrome")>0) {
-    deviceType= "Chrome"
-  }else if (navigator.userAgent.search("Firefox")>0) {
-    deviceType="Firefox"
-  }else if (navigator.userAgent.search("Safari")>0 && navigator.userAgent.search("Chrome") < 0) {
-    deviceType = "Safari"
-  }else {
-    deviceType = "Other"
-  }
-
-  return deviceType;
-}
-
 
 export default function App() {
   const [logged, setLogged] = useState(false);
@@ -37,9 +20,8 @@ export default function App() {
           geolocation: locale,
           deviceType: browser
         };
-        console.log(visitorData);
         sendMetrics(visitorData).then(metrics => {
-
+          console.log(`sendMetrics return: ${metrics}`)
         }).catch(error => {
           console.error(error);
         })
