@@ -1,3 +1,14 @@
+
+export const visitorDataObj = {
+  loadTime: {
+    time: window.performance.timing.domContentLoadedEventEnd-window.performance.timing.navigationStart,
+    date: Date.now()
+  },
+  screenWidth: screen.width,
+  geolocation: "",
+  deviceType: ""
+}
+
 export const browserDetection = async () => {
   let deviceType = "";
   if (navigator.userAgent.search("MSIE")>0) {
